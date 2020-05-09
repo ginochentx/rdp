@@ -14,11 +14,12 @@ CC            = gcc
 CXX           = g++
 CFLAGS        = -O2 -Wall -W -fPIC $(DEFINES)
 #CXXFLAGS      = -pipe -O2 -std=gnu++0x -Wall -W -fPIC $(DEFINES) 
-CXXFLAGS      = -pipe -g -std=gnu++0x -Wall -W -fPIC $(DEFINES) 
+CXXFLAGS      = -static -pipe -g -std=gnu++0x -Wall -W -fPIC $(DEFINES) 
 INCPATH       = -I. -I $(RDP_DEPS)/jansson/include -I $(RDP_DEPS)/zklib/include
 LINK          = g++
 LFLAGS        = -Wl,-O1
-LIBS          = -L $(RDP_DEPS)/zklib/lib/ -lzookeeper_mt -L $(RDP_DEPS)/jansson/lib/ -ljansson
+#LIBS          = -L $(RDP_DEPS)/zklib/lib/ -lzookeeper_mt -L $(RDP_DEPS)/jansson/lib/ -ljansson -lpthread -lc -Wl,--wrap=memcpy -Wl,--wrap=secure_getenv -L/data/software/glibc/ -lsupport
+LIBS          = -L $(RDP_DEPS)/zklib/lib/ -lzookeeper_mt -L $(RDP_DEPS)/jansson/lib/ -ljansson -lpthread  
 
 SOURCES       = main.cc 
 OBJECTS       = main.o 
